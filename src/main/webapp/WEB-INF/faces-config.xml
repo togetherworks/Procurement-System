@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0">
+    <application>
+        <variable-resolver>
+            org.springframework.web.jsf.DelegatingVariableResolver
+        </variable-resolver>
+    </application>
+   
+    <application>
+        <locale-config>
+            <default-locale>en_US</default-locale>
+                        
+        </locale-config>
+        <resource-bundle>
+           <base-name>com.ncs.iframe4.jsf.i18n.SampleMessages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        
+    </application>
+ 	
+
+    <!--global navigation rule-->
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>onError</from-outcome>
+			<to-view-id>/xhtml/itrust/500_Error.xhtml</to-view-id>
+            <redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>onLogout</from-outcome>
+			<to-view-id>/xhtml/itrust/logout.xhtml</to-view-id>
+            <redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+    <navigation-rule>
+		<from-view-id>/xhtml/customer/list.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/xhtml/customer/list.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/xhtml/customer/list.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+    <lifecycle>
+        <phase-listener>
+            com.ncs.iframe4.jsf.listener.locale.LocalePhaseListener
+        </phase-listener>
+    </lifecycle>
+
+    <factory>
+        <exception-handler-factory>com.ncs.iframe4.jsf.context.CustomExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+
+    <validator>  
+    	<validator-id>priceValidator</validator-id>  
+   		<validator-class>com.ncs.iframe4.validator.PriceValidator</validator-class>
+    </validator> 
+    
+    <validator>
+	 	<validator-id>numbericValidator</validator-id>  
+    	<validator-class>com.ncs.iframe4.validator.NumbericValidator</validator-class>
+	</validator>
+	
+</faces-config>

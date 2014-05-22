@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:i="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.order.search']}</ui:define>
+		<ui:define name="content">
+		
+			<h:form id="orderListForm" prependId="true">
+				<!--prependId="true" to prepend form's id to sub elements' id in this form -->
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<table>
+						<tr align="left">
+							<th>#{msg['label.order.id']}</th>
+							<th>#{msg['label.order.optuspo']}</th>
+							<th>#{msg['label.order.ncspo']}</th>
+						</tr>
+						<tr align="left" >
+								<td width="20" align="left">
+								<h:inputText id="orderId" name="orderId"
+								class="ui-inputfield ui-widget ui-state-default ui-corner-all"
+								value="#{orderSearchBean.orderId}" ajax="false"/>
+								</td>
+								<td width="20" align="left">
+								<h:inputText id="optusPoNum" name="optusPoNum"
+								class="ui-inputfield ui-widget ui-state-default ui-corner-all"
+								value="#{orderSearchBean.optusPoNum}" ajax="false"/>
+								</td>
+								<td width="20" align="left">
+								<h:inputText id="ncsPoNum" name="ncsPoNum"
+								class="ui-inputfield ui-widget ui-state-default ui-corner-all"
+									value="#{orderSearchBean.ncsPoNum}" ajax="false"/>
+								</td>
+						</tr>
+					</table>
+						
+							<!-- <td>&nbsp;</td> -->
+					
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<!--  /order/add -->
+								<tr>
+									<td width="100%"><p:commandButton
+											action="#{orderSearchAction.searchOrder(orderSearchBean.orderId, orderSearchBean.optusPoNum ,orderSearchBean.ncsPoNum)}"
+											value="#{msg['button.order.search']}"
+											update="searchOrdResult" /> <aa:checkACL var="var"
+											scope="request" resPath="/xhtml/order/add" resType="URI">
+											&nbsp;
+											<p:commandButton
+												action="#{orderAddAction.gotoCreateOrder}"
+												value="#{msg['button.order.add']}" ajax="false" />
+										</aa:checkACL>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+				<br />
+				<p:messages showDetail="true" id="messages" globalOnly="true"
+					showSummary="false" redisplay="true" />
+
+				<p:dataTable id="searchOrdResult"
+					value="#{orderSearchAction.orderList}" var="order"
+					paginator="true" rows="10" lazy="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					selection="#{orderDeleteBean.selectedOrders}"
+					rowsPerPageTemplate="5,10,15" rowStyleClass="even,odd"
+					emptyMessage="#{msg['msg.order.no.matching.records']}"
+					paginatorPosition="top" paginatorAlwaysVisible="true"
+					selectionMode="multiple">
+					<p:column sortBy="#{order.orderId}" style="width:10%">
+						<f:facet name="header">#{msg['label.order.id']}</f:facet>
+						<h:outputText value="#{order.orderId}" />
+					</p:column>
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.order.optuspo']}</f:facet>
+						<h:outputText value="#{order.optusPoNum}" />
+					</p:column>
+					
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.order.ncspo']}</f:facet>
+						<h:outputText value="#{order.ncsPoNum}" />
+					</p:column>
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.order.lenovo']}</f:facet>
+						<h:outputText value="#{order.lenovoOrderNum}" />
+					</p:column>
+					<p:column sortBy="#{order.eta}" style="width:10%">
+						<f:facet name="header">#{msg['label.order.eta']}</f:facet>
+						<h:outputText value="#{order.eta}" >
+							<f:convertDateTime type="both" dateStyle="short" pattern="dd/mm/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column sortBy="#{order.orderStatus}" style="width:10%">
+						<f:facet name="header">#{msg['label.order.status']}</f:facet>
+						<h:outputText value="#{order.orderStatus}" />
+					</p:column>
+				
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.order.options']}</f:facet>
+						<p:commandButton id="link1"
+							action="#{orderUpdateAction.gotoEdit(order.orderId,orderUpdateBean)}"
+							image="ui-icon ui-icon-search"
+							title="#{msg['label.order.operation']}" ajax="false" >
+						</p:commandButton>
+					</p:column>
+					<f:facet name="footer">
+						<div align="left">
+							&nbsp;
+							<aa:checkACL var="var" scope="request"
+								resPath="/xhtml/order/add" resType="URI">
+											&nbsp;<p:commandButton
+									value="#{msg['button.order.delete']}"
+									onsuccess="confirmation.show();" />
+							</aa:checkACL>
+						</div>
+					</f:facet>
+				</p:dataTable>
+				<br></br>
+			</h:form>
+			<h:form id="dialogForm">
+				<p:confirmDialog message="#{msg['msg.order.confirm.delete']}"
+					showEffect="explode" hideEffect="explode" modal="true"
+					header="#{msg['msg.order.confirm.title']}"
+					widgetVar="confirmation">
+					<p:commandButton value="#{msg['msg.order.confirm.delete.yes']}"
+						action="#{orderDeleteAction.deleteOrder(orderDeleteBean)}"
+						onclick="confirmation.hide()" update="orderListForm" />
+					<p:commandButton value="#{msg['msg.order.confirm.delete.no']}"
+						onclick="confirmation.hide()" />
+				</p:confirmDialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

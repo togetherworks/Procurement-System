@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+<ui:define name="pageTitle">#{msg['title.product.add']}</ui:define>
+<ui:define name="content">
+	<h:form id="productAddForm">
+		<table class="full_width" cellpadding="0">
+			<tr>
+				<td colspan="3" class="horizontal_line">&nbsp;</td>
+			</tr>
+			<tr class="form_odd">
+				<td width="20%" class="form_label_padded">#{msg['label.product.num']}
+					*</td>
+				<td width="4%" class="form_label_padded">:</td>
+				<td><p:inputText id="productNum"
+						value="#{productAddBean.productNum}" required="true"
+						label="Product Num">
+						<f:validateLength maximum="45" />
+					</p:inputText> <h:message for="productNum" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.desc']}
+				*</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputTextarea id="productDesc"
+					value="#{productAddBean.productDesc}" required="true"
+					label="Product Description">
+					<f:validateLength maximum="100" />
+				</p:inputTextarea>
+				<h:message for="productDesc" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.quantity']}</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputText id="productQuantity"
+					value="#{productAddBean.productQuantity}"
+					label="Product Quantity">
+					<f:validator validatorId="numbericValidator" />
+				</p:inputText> <h:message for="productQuantity" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.unit']}</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><h:selectOneMenu value="#{productAddBean.unit}">
+					<f:selectItem itemValue="EA" itemLabel="EA" />
+					<f:selectItem itemValue="Pack" itemLabel="Pack" />
+				</h:selectOneMenu></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.ncsprice']}
+				*</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputText id="ncsPrice"
+					value="#{productAddBean.ncsPrice}" label="NCS Price"
+					required="true">
+					<f:validator validatorId="priceValidator" />
+					<f:ajax render="ncsPrice optusPrice" execute="percentage"
+						listener="#{productAddBean.countListenerN}">
+					</f:ajax>
+				</p:inputText> <h:message for="ncsPrice" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.percentage']}
+				*</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputText id="percentage"
+					value="#{productAddBean.percentage}" label="Percentage"
+					required="true">
+					<f:validator validatorId="priceValidator" />
+					<f:ajax render="percentage optusPrice" execute="ncsPrice"
+						listener="#{productAddBean.countListenerP}">
+					</f:ajax>
+				</p:inputText> <h:message for="Percentage" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.optusprice']}
+				*</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputText id="optusPrice"
+					value="#{productAddBean.optusPrice}" label="Optus Price"
+					required="true" disabled="true">
+
+				</p:inputText> <h:message for="optusPrice" style="color:red" /></td>
+		</tr>
+		<tr class="form_odd">
+			<td width="20%" class="form_label_padded">#{msg['label.product.airfreight']}</td>
+			<td width="4%" class="form_label_padded">:</td>
+			<td><p:inputText id="airFreight"
+					value="#{productAddBean.airFreight}" label="Air Freight Price">
+					<f:validator validatorId="priceValidator" />
+				</p:inputText> <h:message for="airFreight" style="color:red" /></td>
+		</tr>
+
+		<tr>
+			<td colspan="3" class="horizontal_line">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5"></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<table class="std_table">
+					<tr>
+						<td width="100%"><p:commandButton
+								value="#{msg['button.add']}"
+								action="#{productAddAction.createProductProcess(productAddBean)}"
+								ajax="false" onclick="statusDialog.show();"></p:commandButton>&nbsp;<p:commandButton
+										value="#{msg['button.back']}"
+										action="#{productAddAction.cancelProcess}" ajax="false"
+										immediate="true"></p:commandButton>
+								</td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</h:body>
+</html>

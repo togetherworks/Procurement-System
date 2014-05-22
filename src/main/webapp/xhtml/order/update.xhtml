@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust">
+
+<h:body id="allpage">
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.order.viewupdate']}</ui:define>
+		<ui:define name="content">
+			<h:form id="OrderEditForm">
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.id']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+							<p:inputText id="orderId" value="#{orderUpdateBean.orderId}" disabled="true"></p:inputText>
+						</td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.optuspo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="optusPoNum" value="#{orderUpdateBean.optusPoNum}">
+								<f:ajax  execute="@this" />
+								</p:inputText></td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.ncspo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="ncsPoNum"
+								value="#{orderUpdateBean.ncsPoNum}">
+								<f:ajax  execute="@this" />
+								</p:inputText></td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.lenovo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="lenovoOrderNum"
+								value="#{orderUpdateBean.lenovoOrderNum}">
+								<f:ajax  execute="@this" /></p:inputText></td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.eta']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:calendar value="#{orderUpdateBean.eta}"
+								popupIconOnly="true" readOnlyInputText="true" showOn="button"
+								pattern="dd/mm/yyyy">
+							<f:ajax  execute="@this" />
+							</p:calendar></td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.status']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>								
+							<h:selectOneMenu value="#{orderUpdateBean.orderStatus}">
+							   	<f:selectItem itemValue="Not Received" itemLabel="Not Received" />
+							   	<f:selectItem itemValue="Partly Received" itemLabel="Partly Received" />
+							   	<f:selectItem itemValue="Fully Received" itemLabel="Fully Received" />
+							   	<f:ajax render="status1"  execute="@this" />
+							</h:selectOneMenu>		
+						</td>
+					</tr>
+				
+					<tr class="form_odd">
+						
+						<td width="20%" class="form_label_padded">#{msg['label.order.dtreceived']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+								<h:panelGroup id="status1" layout="block">
+									<h:panelGroup rendered="#{orderUpdateBean.orderStatus == 'Fully Received'}" layout="block">
+										<p:calendar value="#{orderUpdateBean.dtReceived}"
+											popupIconOnly="true" readOnlyInputText="true" showOn="button"
+											pattern="dd/mm/yyyy">
+										<f:ajax  execute="@this" />
+										</p:calendar>
+									</h:panelGroup>
+								</h:panelGroup>
+						</td>
+					</tr>
+						
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.updatedt']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+						<p:inputText id="updateDt" value="#{orderUpdateBean.updatedDt}" disabled="true">
+							<f:convertDateTime type="both" dateStyle="short" locale="en_AU" />
+							<f:ajax  execute="@this" />
+						</p:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<tr>
+									<td width="100%"><aa:checkACL var="var" scope="request"
+											resPath="/xhtml/order/add" resType="URI">
+											<p:commandButton value="#{msg['button.order.update']}"
+												action="#{orderUpdateAction.editProcess(orderUpdateBean)}"
+												ajax="false" onclick="statusDialog.show();"></p:commandButton>
+										</aa:checkACL> &nbsp;<p:commandButton value="#{msg['button.order.cancel']}"
+											action="#{orderUpdateAction.cancelProcess}" ajax="false"
+											immediate="true"></p:commandButton>
+									</td>
+									<td>&nbsp;</td>
+								</tr>									
+							</table>
+						</td>
+					</tr>
+				</table>
+			</h:form>
+			
+			<h:form id="searchOrderedProductsForm" >
+			
+			<br />
+				<tr>
+              			<td colspan="4"><p:separator style="width:100%;"/></td>
+          			</tr>
+				<tr>
+					 <td colspan="4">
+					
+					<h:inputHidden value="#{orderUpdateBean.pageId}" id="pageId2" />
+					<h:commandButton action="#{orderDetailSearchAction.searchOrderDetail(orderUpdateBean.orderId)}" 
+									 value="#{msg['label.orderdetail.search']}" >
+						<f:ajax render="searchOrderedProductsForm pageId2" execute="pageId2" listener="#{orderUpdateBean.pageIdListener}" ></f:ajax>						
+					  		
+					</h:commandButton>
+					
+                    
+                	</td>
+	            </tr>
+	                               
+                 <br/>
+	           
+	            
+	            <br/>
+	            <br/>
+	               
+	            <p:dataTable id="searchOrderProducts"
+	             value="#{orderDetailSearchAction.orderDetailList}" var="res"
+	             paginator="true" rows="10" lazy="true"
+	             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 selection="#{orderDetailDeleteBean.selectedProduct}"
+	             rowsPerPageTemplate="5,10,15"
+	             rowStyleClass="even,odd"
+	             emptyMessage="#{msg['msg.no.matching.records']}"
+                 paginatorPosition="top" paginatorAlwaysVisible="true"
+				 selectionMode="single"	
+				 rendered="#{orderUpdateBean.orderId == orderUpdateBean.pageId }"
+				
+	             >
+	             
+	             <p:column sortBy="#{order.orderId}" style="width:10%">
+						<f:facet name="header">#{msg['label.product.num']}</f:facet>
+						<h:outputText value="#{res.product.productNum}" />						
+					</p:column>
+				
+					<p:column style="width:30%">
+						<f:facet name="header">#{msg['label.product.desc']}</f:facet>
+						<h:outputText value="#{res.product.productDesc}" />
+					</p:column>
+					
+					
+					<p:column style="width:5%">
+						<f:facet name="header">#{msg['label.order.quantity']}</f:facet>
+						<h:outputText value="#{res.orderQuantity}" />
+					</p:column>
+					<p:column style="width:5%">
+						<f:facet name="header">#{msg['label.product.unit']}</f:facet>
+						<h:outputText value="#{res.product.unit}" />
+					</p:column>
+					<p:column style="width:10%">
+						<f:facet name="header">#{msg['label.product.optusprice']}</f:facet>
+						<h:outputText value="#{res.optusPrice}">
+							<f:convertNumber type="currency" currencySymbol="$"/>  
+						</h:outputText>
+					</p:column>
+					<p:column style="width:10%">
+						<f:facet name="header">#{msg['label.product.airfreight']}</f:facet>
+						<h:outputText value="#{res.product.airFreight}" rendered="#{res.isAirFreight}">
+						<f:convertNumber type="currency" currencySymbol="$"/>  
+						</h:outputText>
+					</p:column>
+									
+					<p:column style="width:10%">
+						<f:facet name="header">#{msg['label.order.options']}</f:facet>
+						<p:commandButton id="link1"
+							action="#{orderDetailUpdateAction.gotoEdit(res.orderDetailId, orderDetailUpdateBean, orderUpdateBean )}"
+							image="ui-icon ui-icon-search"
+							title="#{msg['label.order.operation']}" ajax="false"
+							>
+						</p:commandButton>
+					</p:column>
+					
+	             
+	      		  <f:facet name="footer">
+	      		  		<table>
+			      		  	<td align="left">
+									&nbsp;
+									<aa:checkACL var="var" scope="request"
+										resPath="/xhtml/order/update" resType="URI">
+													&nbsp;<p:commandButton
+											value="#{msg['button.order.delete']}"
+											onsuccess="confirmation.show();" />
+											<p:commandButton  value="#{msg['label.orderdetail.add']}"
+                                              image="ui-icon ui-icon-plus"
+                                              action="#{orderDetailAddAction.gotoAddProduct(orderUpdateBean.orderId, orderUpdateBean )}"/>
+                                              &nbsp;
+                                              <p:commandButton value="Export" action="#{orderDetailAction.processExport(orderDetailUpdateBean,orderUpdateBean)}" ajax="false">
+                                              </p:commandButton>
+									</aa:checkACL>
+							</td>
+							
+							<td align="right">
+                                #{msg['label.orderdetail.totalamount']}:&nbsp;
+                                <h:outputText id="amount" value="#{orderUpdateBean.orderAmount}" >
+                                <f:convertNumber type="currency" currencySymbol="$"/>  
+                                </h:outputText>
+                       		 </td>
+						</table>
+					</f:facet>     
+			</p:dataTable>
+			 
+			
+	  </h:form>
+	  		<h:form id="dialogForm">
+				<p:confirmDialog message="#{msg['msg.order.confirm.delete']}"
+					showEffect="explode" hideEffect="explode" modal="true"
+					header="#{msg['msg.order.confirm.title']}"
+					widgetVar="confirmation">
+				 <p:commandButton value="#{msg['msg.order.confirm.delete.yes']}"
+						action="#{orderDetailDeleteAction.deleteOrderedProducts(orderDetailDeleteBean, orderUpdateBean)}"
+						onclick="confirmation.hide()" update="searchOrderedProductsForm"/>
+				 <p:commandButton value="#{msg['msg.order.confirm.delete.no']}" onclick="confirmation.hide()"/>
+				</p:confirmDialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

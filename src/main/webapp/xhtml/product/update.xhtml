@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust">
+
+<h:body id="allpage">
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.product.viewupdate']}</ui:define>
+		<ui:define name="content">
+			<h:form id="productEditForm">
+				<h:inputHidden id="productId"
+					value="#{productUpdateBean.productId}"></h:inputHidden>
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.num']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>	
+						<td><p:inputText id="productNum"
+								value="#{productUpdateBean.productNum}" required="true"
+								label="Product ID">
+								<f:validateLength maximum="20" />
+							</p:inputText> <h:message for="productNum" style="color:red" /></td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.desc']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputTextarea id="productDesc"
+								value="#{productUpdateBean.productDesc}" required="true"
+								label="Product Description">
+								<f:validateLength maximum="100" />
+							</p:inputTextarea> <h:message for="productDesc" style="color:red" /></td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.status']}
+							</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>							
+							<h:selectOneMenu value="#{productUpdateBean.productStatus}">
+							   	<f:selectItem itemValue="A" itemLabel="Active" />
+							   	<f:selectItem itemValue="I" itemLabel="Inactive" />
+							    <f:selectItem itemValue="O" itemLabel="Obsolete" />
+							</h:selectOneMenu>								
+							</td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.quantity']}
+							</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="productQuantity"
+								value="#{productUpdateBean.productQuantity}"
+								label="Product Quantity">
+							<f:validator validatorId="numbericValidator"/> 
+							</p:inputText>
+							<h:message for="productQuantity" style="color:red" />
+							</td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.unit']}
+							</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+							<h:selectOneMenu value="#{productUpdateBean.unit}">
+							   	<f:selectItem itemValue="EA" itemLabel="EA" />
+							   	<f:selectItem itemValue="Pack" itemLabel="Pack" />
+							</h:selectOneMenu>
+							</td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.ncsprice']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="ncsPrice"
+								value="#{productUpdateBean.ncsPrice}" label="NCS Price">
+							<f:validator validatorId="priceValidator"/> 
+							<f:ajax render="ncsPrice optusPrice" execute="percentage" listener="#{productUpdateBean.countListenerNu}"> 
+									</f:ajax>
+							</p:inputText>
+							<h:message for="ncsPrice" style="color:red" />
+							</td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.percentage']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="percentage"
+								value="#{productUpdateBean.percentage}"
+								label="Mark Up Percentage">
+							<f:validator validatorId="priceValidator"/> 
+							<f:ajax  render="percentage optusPrice" execute="ncsPrice" listener="#{productUpdateBean.countListenerPu}"> 
+									</f:ajax>
+							</p:inputText>
+							<h:message for="percentage" style="color:red" />
+							</td>
+					</tr>
+
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.optusprice']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="optusPrice"
+								value="#{productUpdateBean.optusPrice}" label="Optus Price" disabled="true">
+							<f:validator validatorId="priceValidator"/>  
+							</p:inputText>
+							<h:message for="optusPrice" style="color:red" />
+							</td>
+					</tr>
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.airfreight']}
+							</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="airFreight"
+								value="#{productUpdateBean.airFreight}" label="Air Freight Price">
+								<f:validator validatorId="priceValidator"/>  
+							</p:inputText>
+							<h:message for="airFreight" style="color:red" />
+							</td>
+					</tr>
+
+
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.updatedt']}
+							</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="updateDt" value="#{productUpdateBean.updatedDt}" disabled="true">
+								<f:convertDateTime type="both" dateStyle="short" locale="en_AU" />
+							</p:inputText>
+						</td>
+					</tr>
+
+
+
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<tr>
+									<td width="100%"><aa:checkACL var="var" scope="request"
+											resPath="/xhtml/product/add" resType="URI">
+											<p:commandButton value="#{msg['button.product.update']}"
+												action="#{productUpdateAction.editProcess(productUpdateBean)}"
+												ajax="false" onclick="statusDialog.show();"></p:commandButton>
+										</aa:checkACL> &nbsp;<p:commandButton
+											value="#{msg['button.back']}"
+											action="#{productUpdateAction.cancelProcess}" ajax="false"
+											immediate="true"></p:commandButton></td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

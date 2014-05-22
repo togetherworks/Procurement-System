@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:i="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.product.search']}</ui:define>
+		<ui:define name="content">
+			<h:form id="proListForm" prependId="true">
+				<!--prependId="true" to prepend form's id to sub elements' id in this form -->
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.num']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><h:inputText id="productNum" name="productNum"
+								class="ui-inputfield ui-widget ui-state-default ui-corner-all"
+								value="#{productSearchBean.productNum}" ajax="false">
+							</h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<!--  /product/add -->
+								<tr>
+									<td width="100%"><p:commandButton
+											action="#{productSearchAction.searchProduct4Optus(productSearchBean.productNum)}"
+											value="#{msg['button.product.search']}"
+											update="searchProResult" /> 
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+				<br />
+				<p:messages showDetail="true" id="messages" globalOnly="true"
+					showSummary="false" redisplay="true" />
+
+				<p:dataTable id="searchProResult"
+					value="#{productSearchAction.productList}" var="product"
+					paginator="true" rows="10" lazy="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					selection="#{productDeleteBean.selectedProducts}"
+					rowsPerPageTemplate="5,10,15" rowStyleClass="even,odd"
+					emptyMessage="#{msg['msg.product.no.matching.records']}"
+					paginatorPosition="top" paginatorAlwaysVisible="true"
+					selectionMode="multiple">
+					<p:column sortBy="#{product.productNum}" style="width:10%">
+						<f:facet name="header">#{msg['label.product.num']}</f:facet>
+						<h:outputText value="#{product.productNum}" />
+					</p:column>
+					<p:column style="width:30%">
+						<f:facet name="header">#{msg['label.product.desc']}</f:facet>
+						<h:outputText value="#{product.productDesc}" />
+					</p:column>
+					 					 
+					<p:column style="width:5%">
+						<f:facet name="header">#{msg['label.product.quantity']}</f:facet>
+						<h:outputText value="#{product.productQuantity}" />
+					</p:column>
+					<p:column style="width:5%">
+						<f:facet name="header">#{msg['label.product.unit']}</f:facet>
+						<h:outputText value="#{product.unit}" />
+					</p:column>
+					
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.product.optusprice']}</f:facet>
+						<h:outputText value="#{product.optusPrice}" >
+							<f:convertNumber currencySymbol="$" type="currency" />
+						</h:outputText>
+					</p:column>
+					<p:column style="width:8%">
+						<f:facet name="header">#{msg['label.product.airfreight']}</f:facet>
+						<h:outputText value="#{product.airFreight}" >
+							<f:convertNumber currencySymbol="$" type="currency" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+				<br></br>
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

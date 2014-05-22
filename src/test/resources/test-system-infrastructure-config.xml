@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- For Transparent Exception Translation-->
+    <bean id="persistenceExceptionInterceptor" class="org.springframework.dao.support.PersistenceExceptionTranslationInterceptor"/>
+
+    <aop:config>
+        <aop:advisor advice-ref="persistenceExceptionInterceptor" pointcut="execution(* *..dao.*DAO+.*(..))"/>
+    </aop:config>
+
+	<!-- TransactionManager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+	<!-- txAdvice -->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED" />            
+        </tx:attributes>
+    </tx:advice>
+	
+	<!--  uses JDK Dynamic Proxy instead of CGLIB Proxy, default proxy-target-class="false"-->
+    <aop:config>    
+        <aop:pointcut id="interceptorPointCuts" expression="execution(* *..service.*Service+.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
+    </aop:config>
+	
+	<!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties" ref="sampleHibernateProperties" />
+
+        <property name="packagesToScan">
+            <list>
+                <value>com.ncs.itrust4.hibernate.to</value>
+                <value>com.ncs.iframe4.hibernate.audit.entity</value>
+                <value>com.ncs.iframe4.jsf.component.menu.to</value>
+                <value>com.ncs.iframe4.jsf.component.codelookup.entity</value>
+                <value>com.ncs.iframe4.sample.to</value>
+            </list>
+        </property>
+		
+		<!-- Interceptor for createDt,createBy,updateDt,updateBy -->
+        <property name="entityInterceptor" ref="iframeTableAuditInterceptor"/>
+		
+		<!-- Envers listeners -->
+        <property name="eventListeners">
+               <map key-type="java.lang.String" value-type="org.hibernate.event.EventListeners">
+                <entry key="post-insert" value-ref="enversListener" />
+                <entry key="post-update" value-ref="enversListener" />
+                <entry key="post-delete" value-ref="enversListener" />
+                <entry key="pre-collection-update" value-ref="enversListener" />
+                <entry key="pre-collection-remove" value-ref="enversListener" />
+                <entry key="post-collection-recreate" value-ref="enversListener" />
+            </map>
+        </property>
+
+
+	</bean>
+	
+	<!-- Hibernate Configurations -->
+	<bean id="sampleHibernateProperties"
+ 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+ 		<property name="properties">
+  			<props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+   				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+   				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
+   				<prop key="hibernate.query.substitutions">true 'T', false 'F'</prop>
+                <prop key="hibernate.jdbc.batch_size">30</prop>
+   				<!-- Uncomment under weblogic -->
+   				<!--  <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>-->
+
+   				<!--
+   				<prop key="hibernate.c3p0.minPoolSize">5</prop>
+   				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
+   				<prop key="hibernate.c3p0.timeout">600</prop>
+   				<prop key="hibernate.c3p0.max_statement">50</prop>
+   				<prop key="hibernate.c3p0.testConnectionOnCheckout">false</prop>
+                -->
+
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+   				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+   				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+
+				<!-- For Envers Configurations, to specify here -->
+   				<prop key="org.hibernate.envers.auditTableSuffix">_AUD</prop>   				   				
+   				<prop key="org.hibernate.envers.revisionTypeFieldName">REV_TYPE</prop>
+   				<prop key="org.hibernate.envers.doNotAuditOptimisticLockingField">false</prop>
+  			</props>
+ 		</property>
+	</bean>
+    
+    <bean id="enversListener" class="org.hibernate.envers.event.AuditEventListener"/>
+
+    <bean id="iframeTableAuditInterceptor" class="com.ncs.iframe4.hibernate.interceptor.IframeTableAuditInterceptor"/>
+    
+    <!-- 1. Embedded Database
+	<jdbc:embedded-database type="HSQL" id="dataSource">
+        <jdbc:script location="classpath:dbscripts/iframe.sql"/>
+        <jdbc:script location="classpath:dbscripts/itrust.sql"/>
+        <jdbc:script location="classpath:dbscripts/iframe-sample.sql"/>
+    </jdbc:embedded-database>
+     -->
+    <!-- 3. Direct JDBC Connection without Connection Pooling 	 --> 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://192.168.83.43:3306/ic40sit"/>
+        <property name="username" value="iconnect"/>
+        <property name="password" value="iconnect"/>
+    </bean>
+		 	
+</beans>

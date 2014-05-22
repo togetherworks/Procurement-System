@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:i="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.customer.search']}</ui:define>
+		<ui:define name="content">
+			<h:form id="custListForm" prependId="true">
+				<!--prependId="true" to prepend form's id to sub elements' id in this form -->
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.name']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><h:inputText id="name"  name="name"
+								class="ui-inputfield ui-widget ui-state-default ui-corner-all" value="#{searchBean.name}" ajax="false">
+                        </h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<!--  /customer/add -->
+								<tr>
+									<td width="100%"><p:commandButton
+											action="#{searchAction.searchCustomer(searchBean.name)}"
+											value="#{msg['button.customer.search']}"  update="searchCustResult"  />
+                                     <aa:checkACL
+											var="var" scope="request" resPath="/xhtml/customer/add"
+											resType="URI">
+											&nbsp;<p:commandButton action="#{addAction.gotoCreateCustomer}"
+												value="#{msg['button.customer.add']}"
+												ajax="false" />
+										</aa:checkACL>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+				<br/>
+				<p:messages showDetail="true" id="messages" globalOnly="true"
+					showSummary="false" redisplay="true" />
+
+				<p:dataTable id="searchCustResult"
+					value="#{searchAction.customerList}" var="customer"
+					paginator="true" rows="10" lazy="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					selection="#{deleteBean.selectedCustomers}"
+					rowsPerPageTemplate="5,10,15" rowStyleClass="even,odd"
+					emptyMessage="#{msg['msg.no.matching.records']}"
+                    paginatorPosition="top"
+                    paginatorAlwaysVisible="true"
+                    selectionMode="multiple"
+                    >
+					<p:column sortBy="#{customer.name}" style="width:20%">
+						<f:facet name="header">#{msg['label.name']}</f:facet>
+						<h:outputText value="#{customer.name}" />
+					</p:column>
+					<p:column style="width:25%">
+						<f:facet name="header">#{msg['label.tel']}</f:facet>
+						<h:outputText value="#{customer.telMain}" />
+					</p:column>
+					<p:column style="width:20%">
+						<f:facet name="header">#{msg['label.industry']}</f:facet>
+						<i:getCodeDesc codeType="industry"
+							codeIdName="#{customer.industryCd}" />
+					</p:column>
+					<p:column style="width:25%">
+						<f:facet name="header">#{msg['label.remark']}</f:facet>
+						<h:outputText value="#{customer.remarks}" />
+					</p:column>
+					<p:column style="width:10%">
+						<f:facet name="header">#{msg['label.operation']}</f:facet>
+						<p:commandButton id="link1"
+							action="#{updateAction.gotoEdit(customer.customerId,updateBean)}"
+							image="ui-icon ui-icon-search" title="#{msg['label.operation']}" ajax="false">
+						</p:commandButton>
+ 					</p:column>
+           <f:facet name="footer">
+						<div align="left">
+                         &nbsp;
+                         <aa:checkACL var="var" scope="request" resPath="/xhtml/customer/add"  resType="URI">
+											&nbsp;<p:commandButton value="#{msg['button.delete']}"	onsuccess="confirmation.show();"/>
+						 </aa:checkACL>
+                    	</div>
+					</f:facet>
+				</p:dataTable>
+				<br></br>
+			</h:form>
+            <h:form id="dialogForm">
+								<p:confirmDialog message="#{msg['msg.confirm.delete']}"
+								showEffect="explode" hideEffect="explode" modal="true"
+								header="#{msg['msg.confirm.title']}" widgetVar="confirmation">
+								<p:commandButton value="#{msg['msg.confirm.delete.yes']}"
+									action="#{deleteAction.deleteCustomer(deleteBean)}"
+  									onclick="confirmation.hide()" update="custListForm"/>
+								<p:commandButton value="#{msg['msg.confirm.delete.no']}"
+									onclick="confirmation.hide()" />
+							</p:confirmDialog>
+            </h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

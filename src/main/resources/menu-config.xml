@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/jee
+		    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+    <!--   begin  menuSupport-->
+    <bean id="menuSupport" class="com.ncs.iframe4.jsf.component.menu.util.MenuSupport" scope="request">
+        <property name="loadResourceBean" ref="iframe4.jsf.loadResourceBean"/>
+        <property name="menuUtil" ref="iframe4.jsf.primefacesMenuUtil"/>
+        <!-- <property name="displayType" value="icon"></property>          -->
+        <property name="displayType" value="hidden"></property>
+        <property name="source" value="xmlfile"></property>
+        <property name="configFiles" value="menuconfig/menu-config-custdir.xml"/>
+        <!--    <property name="source" value="database"></property>    -->
+        <property name="repositoryId" value="SAMPLE-MENU"></property>
+    </bean>
+    <!--
+    <bean id="iframe4.jsf.MenuValidator"  class="com.ncs.iframe4.jsf.component.menu.util.DefaultMenuValidator" scope="request">
+   </bean>
+    -->
+    <bean id="iframe4.jsf.MenuValidator" class="com.ncs.itrust4.jsf.component.menu.util.MenuValidator" scope="request">
+    </bean>
+
+    <!--  end menuSupport -->
+
+</beans>

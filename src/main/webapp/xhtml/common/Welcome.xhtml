@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:url="http://itrust.ncs.com/itrust-jsf/navigationpath"
+>
+<h:head>
+<f:view contentType="text/html; charset=utf-8"/>
+<h:outputStylesheet library="css" name="site.css" target="head"/>
+<h:outputScript library="scripts" name="iextend.js" target="head"/>
+</h:head>
+<h:body class="margined">
+
+<table class="std_table" style="width:545px; height: 378px" align="center">
+<tr>
+	<td background="#{resource['images/splashpix.jpg']}">
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p align="center">
+			<span class="std_txt">
+			Thank you for using iConnect&nbsp;
+			<label class="emphasis_txt">#{msg['msg.welcome.iFrame']}</label>.<br/>
+			#{smsgs['msg.welcome.service']}<br/>
+			</span>
+		</p>
+		<p align="center">
+			<span class="std_txt">#{smsgs['msg.welcome.iflogin']}</span>
+<h:outputLink value="../itrust/loginForm.faces" >#{smsgs['msg.welcome.clickhere']}</h:outputLink>
+		</p>
+	</td>
+</tr>
+</table>
+
+</h:body>
+</html>

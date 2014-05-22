@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+
+		<ui:define name="pageTitle">#{msg['title.customer.add']}</ui:define>
+		<ui:define name="content">
+			<h:form id="addForm">
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.name']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="userName" value="#{addBean.name}"
+								required="true" label="Company Name">
+								<f:validateLength maximum="100" minimum="4" />
+							</p:inputText> <h:message for="userName" style="color:red" /></td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.tel']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="telMain" value="#{addBean.telMain}"
+								required="true" label="Telephone">
+								<f:validateRegex pattern="^\d{8}$" />
+							</p:inputText> <h:message for="telMain" style="color:red" /></td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.industry']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><h:selectOneMenu value="#{addBean.industryCd}">
+								<f:selectItems value="#{addBean.industryList}" var="industry"
+									itemLabel="#{industry.codeDesc}" itemValue="#{industry.codeId}"
+									itemLabelEscaped="true" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.remark']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="remarks" value="#{addBean.remarks}"></p:inputText>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<tr>
+									<td width="100%"><p:commandButton
+											value="#{msg['button.add']}"
+											action="#{addAction.createCustomerProcess(addBean)}"
+											ajax="false" onclick="statusDialog.show();"></p:commandButton>&nbsp;<p:commandButton
+											value="#{msg['button.cancel']}"
+											action="#{addAction.cancelProcess}" ajax="false"
+											immediate="true"></p:commandButton></td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

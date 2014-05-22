@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Procurement System"
+  id="myeclipse.1337835087854"
+  context-root="/procurement-system"
+  j2ee-spec="5.0"
+  archive="Procurement System.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

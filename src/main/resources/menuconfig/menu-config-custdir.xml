@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+  <Menus name="SAMPLE-MENU">
+  <!-- 
+    <Menu name="Customer Sample" title="title.customersample" description="no use">
+        <Item name="Maintain" title="title.maintainCustomer" location="/xhtml/customer/list.faces" target="main" />
+    </Menu>
+    
+    
+   <Menu name="File Upload Demo" title="title.demonstration" description="no use">
+        <Item name="File Upload" title="title.fileupload" location="/xhtml/upload-sample/fileupload.faces" target="main" />
+   </Menu>
+   -->
+   <!-- Procurement Menu  -->
+    <Menu name="Product" title="title.product" description="no use">
+        <Item name="Maintain" title="title.maintainProduct" location="/xhtml/product/list.faces" target="main" />
+        <Item name="ProductPriceList" title="title.ProductPriceList" location="/xhtml/product/pricelist.faces" target="main" />
+    </Menu>
+    <Menu name="Order" title="title.order" description="no use">
+        <Item name="Maintain" title="title.maintainOrder" location="/xhtml/order/list.faces" target="main" />
+        <Item name="OrderStatus" title="title.OrderStatus" location="/xhtml/order/orderStatus.faces" target="main" />
+    </Menu>
+    
+  </Menus>
+
+</MenuConfig>
+

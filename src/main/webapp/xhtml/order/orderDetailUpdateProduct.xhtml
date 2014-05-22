@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+
+		<ui:define name="pageTitle">#{msg['title.orderdetail.viewupdate']}</ui:define>
+		<ui:define name="content">
+			<h:form id="orderDetailUpdateForm">
+				<h:inputHidden id="orderDetailId"
+					value="#{orderDetailUpdateBean.orderDetailId}"></h:inputHidden>
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					Order ID:&nbsp; <h:outputText value="#{orderDetailUpdateBean.orderId}"  />
+					
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.num']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+						<p:inputText id="orderDetailProductNum" value="#{orderDetailUpdateBean.product.productNum}" disabled="true"></p:inputText>
+						</td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.quantity']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="orderQuantity" 
+										 value="#{orderDetailUpdateBean.orderQuantity}"
+										 label="Quantity"
+										 required="true" >
+									<f:validator validatorId="numbericValidator"/> 
+									
+							</p:inputText>
+							<h:message for="orderQuantity" style="color:red" />
+						</td>
+					</tr>
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.product.airfreight']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+						
+							<h:selectOneMenu value="#{orderDetailUpdateBean.isAirFreight}">
+							   	<f:selectItem itemValue="false" itemLabel="No" />
+							   	<f:selectItem itemValue="true" itemLabel="Yes" />
+							  
+							</h:selectOneMenu>
+						
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<tr>
+									<td width="100%"><p:commandButton
+											value="#{msg['button.update']}"
+											action="#{orderDetailUpdateAction.editProcess(orderDetailUpdateBean, orderUpdateBean)}"
+											ajax="false" onclick="statusDialog.show();"></p:commandButton>&nbsp;<p:commandButton
+											value="#{msg['button.back']}"
+											action="#{orderDetailUpdateAction.cancelProcess}" ajax="false"
+											immediate="true"></p:commandButton></td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

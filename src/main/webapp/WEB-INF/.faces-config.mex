@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="*" location="204,0" dimension="49,36" />
+  <JSFFlowResource path="/xhtml/itrust/500_Error.xhtml" location="0,111" dimension="197,36" />
+  <JSFFlowResource path="/xhtml/itrust/logout.xhtml" location="272,111" dimension="176,36" />
+  <JSFFlowResource path="/xhtml/customer/list.xhtml" location="60,252" dimension="182,36" />
+  <JSFFlowNavigationCase id="*,/xhtml/itrust/500_Error.xhtml,onError,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="228,36" />
+      <AbsolutePoint location="228,129" />
+      <AbsolutePoint location="197,129" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/xhtml/itrust/logout.xhtml,onLogout,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="253,18" />
+      <AbsolutePoint location="360,18" />
+      <AbsolutePoint location="360,111" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/xhtml/customer/list.xhtml,/xhtml/customer/list.xhtml,success,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="136,252" />
+      <AbsolutePoint location="136,184" />
+      <AbsolutePoint location="279,184" />
+      <AbsolutePoint location="279,258" />
+      <AbsolutePoint location="242,258" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/xhtml/customer/list.xhtml,/xhtml/customer/list.xhtml,failure,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="166,288" />
+      <AbsolutePoint location="166,325" />
+      <AbsolutePoint location="309,325" />
+      <AbsolutePoint location="309,285" />
+      <AbsolutePoint location="242,285" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+

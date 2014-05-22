@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.file.upload']}</ui:define>
+		<ui:define name="content">
+			<h:form enctype="multipart/form-data">
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.userName']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText value="#{uploadAction.name}"></p:inputText></td>
+					</tr>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.sex']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><h:selectOneRadio layout="lineDirection"
+								value="#{uploadAction.sex}">
+								<f:selectItem itemLabel="#{msg['label.file.male']}"
+									itemValue="Male" />
+								<f:selectItem itemLabel="#{msg['label.file.female']}"
+									itemValue="Female" />
+							</h:selectOneRadio>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.email']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText value="#{uploadAction.email}"></p:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.personPic']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><ncs:upload size="1" fileList="#{uploadAction.fileList}"></ncs:upload>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><p:commandButton
+								value="#{msg['label.file.submit']}"
+								action="#{uploadAction.register}" type="submit" ajax="false" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

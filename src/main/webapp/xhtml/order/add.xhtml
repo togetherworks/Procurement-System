@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ncs="http://iconnect.ncs.com.sg/jsf/iframe"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<h:outputScript name="jsf.js" library="javax.faces"/> 
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+
+		<ui:define name="pageTitle">#{msg['title.order.add']}</ui:define>
+		<ui:define name="content">
+			<h:form id="orderAddForm">
+				<table class="full_width" cellpadding="0">
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<h:inputHidden value="#{orderAddBean.orderId}" id="orderId" />
+					<!--  
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.id']}
+							*</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="orderId"
+								value="#{orderAddBean.orderId}" required="true"
+								label="Order ID"
+								>
+								<f:validateLength maximum="45"/>
+							</p:inputText> <h:message for="orderId" style="color:red" />
+							<h:outputText value="#{orderAddBean.orderId}">
+								</h:outputText></td>
+					</tr>
+					-->
+										
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.optuspo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="optusPoNum"
+								value="#{orderAddBean.optusPoNum}"></p:inputText>
+						</td>
+					</tr>
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.ncspo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="ncsPoNum"
+								value="#{orderAddBean.ncsPoNum}"></p:inputText>
+						</td>
+					</tr>
+					
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.lenovo']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><p:inputText id="lenovoOrderNum"
+								value="#{orderAddBean.lenovoOrderNum}"></p:inputText>
+						</td>
+					</tr>
+					
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.eta']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+							<p:calendar value="#{orderAddBean.eta}"
+                       			 popupIconOnly="true" readOnlyInputText="true" showOn="button" pattern="dd/mm/yyyy">
+                       			 
+                       		</p:calendar>
+						</td>
+					</tr>
+					
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.status']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+							  
+							<h:selectOneMenu id="orderStatus" value="#{orderAddBean.orderStatus}">
+							   	<f:selectItem itemValue="Not Received" itemLabel="Not Received"/>
+							   	<f:selectItem itemValue="Partly Received" itemLabel="Partly Received" />
+							   	<f:selectItem itemValue="Fully Received" itemLabel="Fully Received" />
+							   	<f:ajax render="status1"  execute="@this"  />
+							</h:selectOneMenu>
+						</td>
+					</tr>
+					
+					<tr class="form_odd">
+						<td width="20%" class="form_label_padded">#{msg['label.order.dtreceived']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>
+							<h:panelGroup id="status1" layout="block">
+								<h:panelGroup rendered="#{orderAddBean.orderStatus == 'Fully Received'}" layout="block">
+									<p:calendar value="#{orderAddBean.dtReceived}" 
+											popupIconOnly="true" 
+											readOnlyInputText="true" 
+											showOn="button" 
+											pattern="dd/mm/yyyy">
+	                       			</p:calendar>
+	                       			</h:panelGroup>
+							</h:panelGroup>
+						</td>
+					</tr>
+				
+					<tr>
+						<td colspan="3" class="horizontal_line">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="3" height="5"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table class="std_table">
+								<tr>
+									<td width="100%"><p:commandButton
+											value="#{msg['button.add']}"
+											action="#{orderAddAction.createOrderProcess(orderAddBean)}"
+											ajax="false" onclick="statusDialog.show();"></p:commandButton>&nbsp;<p:commandButton
+											value="#{msg['button.order.cancel']}"
+											action="#{orderAddAction.cancelProcess}" ajax="false"
+											immediate="true"></p:commandButton></td>
+									<td>&nbsp;</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

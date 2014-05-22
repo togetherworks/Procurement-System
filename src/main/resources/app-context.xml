@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- menu configuration -->
+	<import resource="classpath:menu-config.xml" />
+
+	<!-- Page Controller begin -->
+	<bean id="searchAction" class="com.ncs.iframe4.ps.action.SearchAction" scope="session">
+		<property name="customerService" ref="customerService" />
+	</bean>
+	<bean id="addAction" class="com.ncs.iframe4.ps.action.AddAction"
+		scope="session">
+		<property name="customerService" ref="customerService" />
+	</bean>
+	<bean id="deleteAction" class="com.ncs.iframe4.ps.action.DeleteAction"
+		scope="session">
+		<property name="customerService" ref="customerService" />
+	</bean>
+	<bean id="updateAction" class="com.ncs.iframe4.ps.action.UpdateAction"
+		scope="session">
+		<property name="customerService" ref="customerService" />
+	</bean>
+	<!-- Page Controller end -->
+	
+	
+
+	<!-- Page Product Controller begin -->
+	<bean id="productSearchAction" class="com.ncs.iframe4.ps.action.ProductSearchAction"
+		scope="session">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="productAddAction" class="com.ncs.iframe4.ps.action.ProductAddAction"
+		scope="session">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="productDeleteAction" class="com.ncs.iframe4.ps.action.ProductDeleteAction"
+		scope="session">
+		<property name="productService" ref="productService" />
+	</bean>
+	<bean id="productUpdateAction" class="com.ncs.iframe4.ps.action.ProductUpdateAction"
+		scope="session">
+		<property name="productService" ref="productService" />
+	</bean>
+	<!-- Page Product Controller end -->
+
+
+	<!-- Page Order Controller begin -->
+	<bean id="orderSearchAction" class="com.ncs.iframe4.ps.action.OrderSearchAction"
+		scope="session">
+		<property name="orderService" ref="orderService" />
+	</bean>
+	<bean id="orderAddAction" class="com.ncs.iframe4.ps.action.OrderAddAction"
+		scope="session">
+		<property name="orderService" ref="orderService" />
+	</bean>
+	<bean id="orderDeleteAction" class="com.ncs.iframe4.ps.action.OrderDeleteAction"
+		scope="session">
+		<property name="orderService" ref="orderService" />
+	</bean>
+	<bean id="orderUpdateAction" class="com.ncs.iframe4.ps.action.OrderUpdateAction"
+		scope="session">
+		<property name="orderService" ref="orderService" />
+	</bean>
+	<!-- Page Product Controller end -->
+
+<!-- Page Bean begin -->
+	<bean id="searchBean" class="com.ncs.iframe4.ps.to.SearchFormBean"
+		scope="view" />
+	<bean id="addBean" class="com.ncs.iframe4.ps.to.AddFormBean"
+		scope="view">
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+	<bean id="deleteBean" class="com.ncs.iframe4.ps.to.DeleteFormBean"
+		scope="view" />
+
+	<!-- set request scope to maintain data when call JSF preRenderView event -->
+	<bean id="updateBean" class="com.ncs.iframe4.ps.to.UpdateFormBean"
+		scope="session">
+		<property name="customerService" ref="customerService" />
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+<!-- Page Bean end -->
+
+
+<!-- Page Product Bean begin -->
+	<bean id="productSearchBean" class="com.ncs.iframe4.ps.to.ProductSearchFormBean"
+		scope="view" />
+
+	<bean id="productAddBean" class="com.ncs.iframe4.ps.to.ProductAddFormBean"
+		scope="view">
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+
+	<bean id="productDeleteBean" class="com.ncs.iframe4.ps.to.ProductDeleteFormBean"
+		scope="view" />
+
+	<!-- set request scope to maintain data when call JSF preRenderView event -->
+	<bean id="productUpdateBean" class="com.ncs.iframe4.ps.to.ProductUpdateFormBean"
+		scope="session">
+		<property name="productService" ref="productService" />
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+<!-- Page Product Bean end -->
+
+
+
+<!-- Page Order Bean begin -->
+	<bean id="orderSearchBean" class="com.ncs.iframe4.ps.to.OrderSearchFormBean"
+		scope="view" />
+
+	<bean id="orderAddBean" class="com.ncs.iframe4.ps.to.OrderAddFormBean"
+		scope="view">
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+
+	<bean id="orderDeleteBean" class="com.ncs.iframe4.ps.to.OrderDeleteFormBean"
+		scope="view" />
+
+	<!-- set request scope to maintain data when call JSF preRenderView event -->
+	<bean id="orderUpdateBean" class="com.ncs.iframe4.ps.to.OrderUpdateFormBean"
+		scope="session">
+		<property name="orderService" ref="orderService" />
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+<!-- Page Order Bean end -->
+	
+	
+<!-- Page OrderDetail Bean begin -->
+	<bean id="orderDetailUpdateBean" class="com.ncs.iframe4.ps.to.OrderDetailUpdateFormBean"
+		scope="session">		
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="OrderDetailSearchFormBean" class="com.ncs.iframe4.ps.to.OrderDetailSearchFormBean"
+		scope="view" />
+		
+	<bean id="orderDetailDeleteBean" class="com.ncs.iframe4.ps.to.OrderDetailDeleteFormBean"
+		scope="view" />
+	
+	<bean id="orderDetailAddBean" class="com.ncs.iframe4.ps.to.OrderDetailAddFormBean"
+		scope="view">
+		<property name="codeLookupService" ref="codeLookupService" />
+	</bean>
+	
+
+<!-- Page OrderDetail Bean end -->
+	
+<!-- Customer DAO and Service begin -->
+	<bean id="customerDAO" class="com.ncs.iframe4.ps.dao.CustomerDAOImpl">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+	<bean id="customerService" class="com.ncs.iframe4.ps.service.CustomerServiceImpl">
+		<property name="customerDAO" ref="customerDAO" />
+	</bean>
+<!-- Customer DAO and Service end -->		
+	
+
+
+<!-- product DAO and Service begin -->
+
+	<bean id="productDAO" class="com.ncs.iframe4.ps.dao.ProductDAOImpl">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+	<bean id="productService" class="com.ncs.iframe4.ps.service.ProductServiceImpl">
+		<property name="productDAO" ref="productDAO" />
+	</bean>
+<!-- product DAO and Service end -->
+
+
+
+
+<!-- order DAO and Service begin -->
+	<bean id="orderDAO" class="com.ncs.iframe4.ps.dao.OrderDAOImpl">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+	<bean id="orderService" class="com.ncs.iframe4.ps.service.OrderServiceImpl">
+		<property name="orderDAO" ref="orderDAO" />
+	</bean>
+<!-- order DAO and Service end -->
+
+
+<!-- orderDetail DAO and Service begin -->
+	<bean id="orderDetailDAO" class="com.ncs.iframe4.ps.dao.OrderDetailDAOImpl">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+	<bean id="orderDetailService" class="com.ncs.iframe4.ps.service.OrderDetailServiceImpl">
+		<property name="orderDetailDAO" ref="orderDetailDAO" />
+	</bean>
+<!-- orderDetail DAO and Service end -->
+
+<!-- Page Orderdetail Controller begin -->
+	<bean id="orderDetailSearchAction" class="com.ncs.iframe4.ps.action.OrderDetailSearchAction"
+		scope="session">
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="orderDetailDeleteAction" class="com.ncs.iframe4.ps.action.OrderDetailDeleteAction"
+		scope="session">
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="orderDetailAddAction" class="com.ncs.iframe4.ps.action.OrderDetailAddAction"
+		scope="session">
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="orderDetailUpdateAction" class="com.ncs.iframe4.ps.action.OrderDetailUpdateAction"
+		scope="session">
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+	<bean id="orderDetailAction" class="com.ncs.iframe4.ps.action.OrderDetailAction"
+		scope="session">
+		<property name="orderDetailService" ref="orderDetailService" />
+	</bean>
+
+<!-- Page Order detail Controller end -->
+
+
+	<!-- fileupload module bean -->
+	<bean id="uploadAction" class="com.ncs.iframe4.ps.action.RegisterUploadAction"
+		scope="request" />
+
+</beans>

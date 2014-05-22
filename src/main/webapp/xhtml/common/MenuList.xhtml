@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ifm="http://iconnect.ncs.com.sg/jsf/iframe"
+      xmlns:aa="http://iconnect.ncs.com.sg/jsf/itrust">
+ <h:head>
+    <title>Menu</title>
+</h:head>
+<h:body >
+<h3>
+   #{msg['title.currentuser']}:  <font color="red"><aa:info name="LoginId"></aa:info>  </font>
+</h3>
+
+  <h:form>
+
+
+      <!-- type="sliding" sliding tiered -->
+    <p:menu model="#{menuSupport.showModel}" style="width:180px" />
+          <br></br>
+
+            <br></br>
+             <aa:login type="button" loginPath="../itrust/loginForm.faces" loginText="#{msg['button.login']}" logoutPath="../itrust/logoutOk.faces" logoutText="#{msg['button.logout']}" target="main"></aa:login>
+           <br></br>
+               <br></br>
+
+    <ifm:locale type="href" newline="true" onsuccess="window.parent.document.location=window.parent.document.location;"/>
+
+  </h:form>
+    </h:body>
+</html>

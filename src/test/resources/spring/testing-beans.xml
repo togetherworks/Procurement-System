@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+    <import resource="classpath*:com/ncs/iframe4/hibernate/spring/beans.xml" />
+    <import resource="classpath*:com/ncs/itrust4/core/spring/beans.xml" />
+    <import resource="classpath*:com/ncs/itrust4/hibernate/spring/beans.xml" />
+
+
+     <bean id="customerDAO"  class="com.ncs.iframe4.sample.dao.CustomerDAOImpl"   >
+       <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+      <bean id="industryDAO" class="com.ncs.iframe4.sample.dao.IndustryDAOImpl" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+     <bean  id="customerService" class="com.ncs.iframe4.sample.service.CustomerServiceImpl" >
+        <property name="customerDAO" ref="customerDAO" />
+	</bean>
+     <bean  id="industryService" class="com.ncs.iframe4.sample.service.IndustryServiceImpl" >
+        <property name="industryDAO" ref="industryDAO" />
+	</bean>
+
+
+
+    <bean id="iconnectDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://192.168.83.43:3306/ic317sit"/>
+        <property name="username" value="iconnect"/>
+        <property name="password" value="iconnect"/>
+    </bean>
+
+
+    <bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<property name="dataSource" ref="iconnectDS"/>
+		<property name="hibernateProperties" ref="sampleHibernateProperties" />
+
+
+
+        <!--<property name="eventListeners">
+            <map>
+                <entry key="post-insert">
+                    <ref bean="iframe.auditTrailListener"/>
+                </entry>
+                <entry key="post-update">
+                    <ref bean="iframe.auditTrailListener"/>
+                </entry>
+                <entry key="post-delete">
+                    <ref bean="iframe.auditTrailListener"/>
+                </entry>
+            </map>
+        </property>-->
+
+        <property name="mappingLocations">
+    		<list>
+                <value>classpath*:hibernate/*.hbm.xml</value>
+            </list>
+         </property>
+
+       <!-- <property name="mappingResources">
+    		<list>
+
+                <value>hibernate/to/mapping/Customer.hbm.xml</value>
+                <value>hibernate/Company.hbm.xml</value>
+                &lt;!&ndash;<value>hibernate/CustomerAddress.hbm.xml</value>&ndash;&gt;
+            </list>
+ 		</property>-->
+	</bean>
+
+	<bean id="sampleHibernateProperties"
+ 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+ 		<property name="properties">
+  			<props>
+
+   				<prop key="hibernate.hbm2ddl.auto">update</prop>
+   				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+   				<prop key="hibernate.query.substitutions">true 'T', false 'F'</prop>
+   				<!-- Uncomment under weblogic -->
+   				<!--  <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>-->
+
+   				<!--  <prop key="hibernate.show_sql">true</prop>
+   				<prop key="hibernate.c3p0.minPoolSize">5</prop>
+   				<prop key="hibernate.c3p0.maxPoolSize">20</prop>
+   				<prop key="hibernate.c3p0.timeout">600</prop>
+   				<prop key="hibernate.c3p0.max_statement">50</prop>
+   				<prop key="hibernate.c3p0.testConnectionOnCheckout">false</prop>
+   				<prop key="hibernate.jdbc.batch_size">50</prop>
+
+   				-->
+   				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+   				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+  			</props>
+ 		</property>
+	</bean>
+
+
+
+</beans>

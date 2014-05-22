@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/xhtml/templates/mainLayout.xhtml">
+		<ui:define name="pageTitle">#{msg['title.file.upload']}</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<table class="full_width" cellpadding="0">
+					<caption>#{msg['label.file.info']}</caption>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.userName']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>#{uploadAction.name}</td>
+					</tr>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.email']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td>#{uploadAction.email}</td>
+					</tr>
+					<tr>
+						<td width="20%" class="form_label_padded">#{msg['label.file.view']}</td>
+						<td width="4%" class="form_label_padded">:</td>
+						<td><br /> <p:commandLink id="file2"
+								value="#{uploadAction.saveFileName}"
+								action="#{uploadAction.download}" type="button" ajax="false">
+								<f:param name="fileName" value="#{uploadAction.saveFileName}"></f:param>
+							</p:commandLink> <br /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><h:outputLink value="fileupload.faces">&lt;&lt;#{msg['button.back']}</h:outputLink>
+						</td>
+					</tr>
+				</table>
+				<br></br>
+				<br></br>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

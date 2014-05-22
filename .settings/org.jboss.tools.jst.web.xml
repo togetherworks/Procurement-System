@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems VERSION="2.0.0" application-name="iframe-sample-4.0"
+ model-entity="FileSystems" workspace-home="./src/main/webapp/WEB-INF">
+ <file-system NAME="WEB-INF" location="%workspace.home%" model-entity="FileSystemFolder"/>
+ <file-system NAME="WEB-ROOT" info="Content-Type=Web"
+  location="%workspace.home%/.." model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../java" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib" location="%workspace.home%/lib" model-entity="FileSystemFolder"/>
+ <file-system NAME="classes" location="%workspace.home%/classes" model-entity="FileSystemFolder"/>
+ <file-system NAME="iframe-sample-4.0" location="%eclipse.project%" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-dnsns.jar"
+  location="C:\Program Files\MyEclipse-6.0M1\jre\lib\ext\dnsns.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-localedata.jar"
+  location="C:\Program Files\MyEclipse-6.0M1\jre\lib\ext\localedata.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunjce_provider.jar"
+  location="C:\Program Files\MyEclipse-6.0M1\jre\lib\ext\sunjce_provider.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunpkcs11.jar"
+  location="C:\Program Files\MyEclipse-6.0M1\jre\lib\ext\sunpkcs11.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-iframe-commons-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\iframe-commons\4.0\iframe-commons-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.context-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.context\3.0.3.RELEASE\org.springframework.context-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.asm-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.asm\3.0.3.RELEASE\org.springframework.asm-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.expression-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.expression\3.0.3.RELEASE\org.springframework.expression-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.beanutils-1.7.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.beanutils\1.7.0\com.springsource.org.apache.commons.beanutils-1.7.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.collections-3.2.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.collections\3.2.0\com.springsource.org.apache.commons.collections-3.2.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.com.opensymphony.oscache-2.1.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\opensymphony\oscache\com.springsource.com.opensymphony.oscache\2.1.0\com.springsource.com.opensymphony.oscache-2.1.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.jgroups-2.2.8.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\jgroups\com.springsource.org.jgroups\2.2.8\com.springsource.org.jgroups-2.2.8.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.edu.oswego.cs.dl.util.concurrent-1.3.4.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\edu\oswego\cs\concurrent\com.springsource.edu.oswego.cs.dl.util.concurrent\1.3.4\com.springsource.edu.oswego.cs.dl.util.concurrent-1.3.4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.net.sf.ehcache-1.5.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\net\sourceforge\ehcache\com.springsource.net.sf.ehcache\1.5.0\com.springsource.net.sf.ehcache-1.5.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.net.sf.jsr107cache-1.0.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\net\sourceforge\jsr107cache\com.springsource.net.sf.jsr107cache\1.0.0\com.springsource.net.sf.jsr107cache-1.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.edu.emory.mathcs.backport-3.0.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\edu\emory\mathcs\backport\com.springsource.edu.emory.mathcs.backport\3.0.0\com.springsource.edu.emory.mathcs.backport-3.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.mail-1.4.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\mail\com.springsource.javax.mail\1.4.1\com.springsource.javax.mail-1.4.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.activation-1.1.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\activation\com.springsource.javax.activation\1.1.1\com.springsource.javax.activation-1.1.1.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\aspectj\com.springsource.org.aspectj.weaver\1.6.8.RELEASE\com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.slf4j.api-1.6.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\slf4j\com.springsource.slf4j.api\1.6.1\com.springsource.slf4j.api-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-log4j12-1.6.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\slf4j\slf4j-log4j12\1.6.1\slf4j-log4j12-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-slf4j-api-1.6.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\slf4j\slf4j-api\1.6.1\slf4j-api-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-log4j-1.2.16.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\log4j\log4j\1.2.16\log4j-1.2.16.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jcl-over-slf4j-1.6.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\slf4j\jcl-over-slf4j\1.6.1\jcl-over-slf4j-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-iframe-jsf-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\iframe-jsf\4.0\iframe-jsf-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-api-2.0.3.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\sun\faces\jsf-api\2.0.3\jsf-api-2.0.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jsf-impl-2.0.3.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\sun\faces\jsf-impl\2.0.3\jsf-impl-2.0.3.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.fileupload-1.2.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.fileupload\1.2.0\com.springsource.org.apache.commons.fileupload-1.2.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.io-1.4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.io\1.4.0\com.springsource.org.apache.commons.io-1.4.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.apache.commons.digester-1.8.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\apache\commons\com.springsource.org.apache.commons.digester\1.8.0\com.springsource.org.apache.commons.digester-1.8.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-iframe-hibernate-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\iframe-hibernate\4.0\iframe-hibernate-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.hibernate-3.3.2.GA.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\com.springsource.org.hibernate\3.3.2.GA\com.springsource.org.hibernate-3.3.2.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.net.sf.cglib-2.2.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\net\sourceforge\cglib\com.springsource.net.sf.cglib\2.2.0\com.springsource.net.sf.cglib-2.2.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.antlr-2.7.6.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\antlr\com.springsource.antlr\2.7.6\com.springsource.antlr-2.7.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.dom4j-1.6.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\dom4j\com.springsource.org.dom4j\1.6.1\com.springsource.org.dom4j-1.6.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.objectweb.asm-1.5.3.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\objectweb\asm\com.springsource.org.objectweb.asm\1.5.3\com.springsource.org.objectweb.asm-1.5.3.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.hibernate.annotations-3.3.1.ga.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\com.springsource.org.hibernate.annotations\3.3.1.ga\com.springsource.org.hibernate.annotations-3.3.1.ga.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.hibernate.annotations.common-3.3.0.ga.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\com.springsource.org.hibernate.annotations.common\3.3.0.ga\com.springsource.org.hibernate.annotations.common-3.3.0.ga.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.hibernate.ejb-3.3.2.GA.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\com.springsource.org.hibernate.ejb\3.3.2.GA\com.springsource.org.hibernate.ejb-3.3.2.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.jboss.util-2.0.4.GA.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\jboss\util\com.springsource.org.jboss.util\2.0.4.GA\com.springsource.org.jboss.util-2.0.4.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.persistence-1.0.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\persistence\com.springsource.javax.persistence\1.0.0\com.springsource.javax.persistence-1.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-com.springsource.org.hibernate.validator-3.1.0.GA.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\com.springsource.org.hibernate.validator\3.1.0.GA\com.springsource.org.hibernate.validator-3.1.0.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.core-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.core\3.0.3.RELEASE\org.springframework.core-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.transaction-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.transaction\3.0.3.RELEASE\org.springframework.transaction-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.aopalliance-1.0.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\aopalliance\com.springsource.org.aopalliance\1.0.0\com.springsource.org.aopalliance-1.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.ejb-3.0.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\ejb\com.springsource.javax.ejb\3.0.0\com.springsource.javax.ejb-3.0.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.transaction-1.1.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\transaction\com.springsource.javax.transaction\1.1.0\com.springsource.javax.transaction-1.1.0.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.context.support-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.context.support\3.0.3.RELEASE\org.springframework.context.support-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.beans-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.beans\3.0.3.RELEASE\org.springframework.beans-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.orm-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.orm\3.0.3.RELEASE\org.springframework.orm-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.aop-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.aop\3.0.3.RELEASE\org.springframework.aop-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.jdbc-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.jdbc\3.0.3.RELEASE\org.springframework.jdbc-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.jms-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.jms\3.0.3.RELEASE\org.springframework.jms-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.web-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.web\3.0.3.RELEASE\org.springframework.web-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system
+  NAME="lib-org.springframework.web.servlet-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.web.servlet\3.0.3.RELEASE\org.springframework.web.servlet-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jboss-envers-1.2.2.GA.SP1-hibernate-3.3.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\jboss-envers\1.2.2.GA.SP1-hibernate-3.3\jboss-envers-1.2.2.GA.SP1-hibernate-3.3.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-jpa-2.0-api-1.0.0.Final.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.0-api\1.0.0.Final\hibernate-jpa-2.0-api-1.0.0.Final.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-hibernate-tools-3.2.0.ga.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\hibernate-tools\3.2.0.ga\hibernate-tools-3.2.0.ga.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-bsh-2.0b4.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\beanshell\bsh\2.0b4\bsh-2.0b4.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-freemarker-2.3.8.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\freemarker\freemarker\2.3.8\freemarker-2.3.8.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-jtidy-r8-20060801.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hibernate\jtidy\r8-20060801\jtidy-r8-20060801.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-primefaces-2.2.1.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\primefaces\primefaces\2.2.1\primefaces-2.2.1.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-iframe-jsf-theme-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\iframe-jsf-theme\4.0\iframe-jsf-theme-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itrust-jsf-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\itrust\itrust-jsf\4.0\itrust-jsf-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-iframe-extensions-psicsm-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\iframe-extensions-psicsm\4.0\iframe-extensions-psicsm-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-edx-response-document-1.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\iframe\edx-response-document\1.0\edx-response-document-1.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itrust-core-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\itrust\itrust-core\4.0\itrust-core-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itrust-crypto-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\itrust\itrust-crypto\4.0\itrust-crypto-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-itrust-hibernate-4.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\ncs\iconnect\itrust\itrust-hibernate\4.0\itrust-hibernate-4.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javassist-3.10.0.GA.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\jboss\javassist\com.springsource.javassist\3.10.0.GA\com.springsource.javassist-3.10.0.GA.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-bcprov-jdk15-1.46.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\bouncycastle\bcprov-jdk15\1.46\bcprov-jdk15-1.46.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.servlet.jsp-2.1.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\servlet\com.springsource.javax.servlet.jsp\2.1.0\com.springsource.javax.servlet.jsp-2.1.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.javax.servlet-2.5.0.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\servlet\com.springsource.javax.servlet\2.5.0\com.springsource.javax.servlet-2.5.0.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.org.hsqldb-1.8.0.10.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\hsqldb\com.springsource.org.hsqldb\1.8.0.10\com.springsource.org.hsqldb-1.8.0.10.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-junit-4.8.2.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\junit\junit\4.8.2\junit-4.8.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-impl-2.2.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\glassfish\web\el-impl\2.2\el-impl-2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-el-api-2.2.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\javax\el\el-api\2.2\el-api-2.2.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-org.springframework.test-3.0.3.RELEASE.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\org\springframework\org.springframework.test\3.0.3.RELEASE\org.springframework.test-3.0.3.RELEASE.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-com.springsource.com.mysql.jdbc-5.1.6.jar"
+  location="C:\Documents and Settings\cheng zhang\.m2\repository\com\mysql\jdbc\com.springsource.com.mysql.jdbc\5.1.6\com.springsource.com.mysql.jdbc-5.1.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-mysql-connector-java-5.1.6.jar"
+  location="C:\NCS_Cheng\Projects\Procurement System\code\WEB-INF\lib\mysql-connector-java-5.1.6.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="src-1"
+  location="%workspace.home%/../../../test/java" model-entity="FileSystemFolder"/>
+ <file-system NAME="src-2"
+  location="%workspace.home%/../../../test/resources" model-entity="FileSystemFolder"/>
+ <file-system NAME="src-3" location="%workspace.home%/../../resources" model-entity="FileSystemFolder"/>
+ <file-system NAME="lib-resources.jar"
+  location="C:\Program Files\Java\jdk1.6\jre\lib\resources.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-servlet.jar"
+  location="C:\Program Files\Java\jdk1.6\jre\lib\ext\servlet.jar" model-entity="FileSystemJar"/>
+ <file-system NAME="lib-sunmscapi.jar"
+  location="C:\Program Files\Java\jdk1.6\jre\lib\ext\sunmscapi.jar" model-entity="FileSystemJar"/>
+ <web SERVLET_VERSION="2.4" model-entity="JstWeb" model-path="/web.xml">
+  <module URI="/WEB-INF/faces-config.xml" model-entity="WebJSFModule"
+   model-path="/faces-config.xml" src="src" web-root="WEB-ROOT"/>
+ </web>
+</file-systems>
